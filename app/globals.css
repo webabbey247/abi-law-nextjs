@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-primary: #0c818b;
+  --color-secondary: #bce8d7;
+  --color-accent: #b8941f;
+  --color-bg: #f5f4f0;
+  --color-bg-dark: #1a1a2e;
+  --color-text: #2d2d2d;
+  --color-text-light: #6b6b6b;
+  --color-border: #e2e0d8;
+
+  /* Font families — --font-display and --font-sans are injected by next/font */
+  --font-heading: var(--font-display), 'Playfair Display', Georgia, serif;
+  --font-body: var(--font-sans), 'DM Sans', system-ui, sans-serif;
+
+  /* Font sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-h2: 1.75rem;
+  --font-size-h1: 2.25rem;
+  --font-size-4xl: 2.5rem;
+  --font-size-5xl: 3rem;
+  --font-size-display: 3rem;
+  --font-size-6xl: 4rem;
+
+  /* Line heights */
+  --line-height-none: 1;
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.3;
+  --line-height-subhead: 1.3;
+  --line-height-normal: 1.5;
+  --line-height-ui: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-lead: 1.65;
+  --line-height-body: 1.7;
+  --line-height-loose: 1.8;
+
+  /* Letter spacing */
+  --letter-spacing-tighter: -0.05em;
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-snug: -0.015em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.02em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.07em;
+  --letter-spacing-caps: 0.2em;
+}
+
+:root {
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 40px rgba(0, 0, 0, 0.14);
+  --transition: all 0.3s ease;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans), 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), 'Playfair Display', Georgia, serif;
+}
+
+a { text-decoration: none; transition: var(--transition); }
+img { max-width: 100%; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+/* font-display maps to the heading typeface (Playfair Display via --font-display) */
+.font-display { font-family: var(--font-display), 'Playfair Display', Georgia, serif; }
+/* font-body maps to the body typeface (DM Sans via --font-sans) */
+.font-body    { font-family: var(--font-sans), 'DM Sans', system-ui, sans-serif; }
+
+.btn-primary {
+  display: inline-block;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  font-family: var(--font-sans), 'DM Sans', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  padding: 0.875rem 2rem;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-primary:hover { background-color: var(--color-accent); transform: translateY(-1px); }
+
+.btn-secondary {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--color-primary);
+  font-family: var(--font-sans), 'DM Sans', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  padding: 0.875rem 2rem;
+  border: 2px solid var(--color-primary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-secondary:hover { background-color: var(--color-primary); color: #fff; }
+
+.btn-outline-white {
+  display: inline-block;
+  background-color: transparent;
+  color: #fff;
+  font-family: var(--font-sans), 'DM Sans', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  padding: 0.875rem 2rem;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-outline-white:hover { background-color: #fff; color: var(--color-primary); border-color: #fff; }
+
+.section-label {
+  font-family: var(--font-sans), 'DM Sans', system-ui, sans-serif;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: var(--font-display), 'Playfair Display', Georgia, serif;
+  font-size: clamp(var(--font-size-3xl), 4vw, var(--font-size-5xl));
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-primary);
+  margin: 0 0 1rem 0;
+}
+.section-title.light { color: #fff; }
+
+.section-subtitle {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-loose);
+  color: var(--color-text-light);
+  max-width: 540px;
+  margin: 0;
+}
+
+.divider { width: 56px; height: 3px; background: var(--color-secondary); margin: 1.25rem 0; }
+
+.cta-box { background-color: #203253; padding: 5rem 0; text-align: center; }
+
+.hover-lift {
+  transition: var(--transition);
+  box-shadow: var(--shadow-card);
+}
+.hover-lift:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+.hover-lift-top {
+  transition: var(--transition);
+  box-shadow: var(--shadow-card);
+  border-top: 4px solid transparent;
+}
+.hover-lift-top:hover {
+  box-shadow: var(--shadow-hover);
+  border-top-color: var(--color-secondary);
+  transform: translateY(-4px);
+}
+.hover-lift-bottom {
+  transition: var(--transition);
+  box-shadow: var(--shadow-card);
+  border-bottom: 3px solid transparent;
+}
+.hover-lift-bottom:hover {
+  box-shadow: var(--shadow-hover);
+  border-bottom-color: var(--color-secondary);
+  transform: translateY(-4px);
+}
+
+.subscribe-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-family: var(--font-sans), 'DM Sans', system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.subscribe-input:focus { border-color: var(--color-secondary); }
+.subscribe-input.error { border-color: #e05252; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.6s ease forwards; }
+
+@layer utilities {
+  .bg-grid-ink {
+    background-image:
+      linear-gradient(#a8c4ec0f 1px, #0000 1px),
+      linear-gradient(90deg, #a8c4ec0f 1px, #0000 1px);
+    background-size: 60px 60px;
+  }
+}

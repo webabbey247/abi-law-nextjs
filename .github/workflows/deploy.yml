@@ -1,0 +1,122 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Deploy to Shared Hosting (cPanel Node.js App / Phusion Passenger)
+# Triggered on every push to main, or manually from the Actions tab.
+#
+# ── How cPanel Node.js App works ─────────────────────────────────────────────
+# cPanel runs your app through Phusion Passenger (not PM2). You register the
+# app once in cPanel → Node.js App, set the Application Root and entry point
+# (server.js), then set all environment variables in that same UI.
+#
+# ── Passenger restart — no SSH required ──────────────────────────────────────
+# Passenger restarts when tmp/restart.txt is updated. We write the current UTC
+# timestamp into tmp/restart.txt before the FTP upload. Because the content
+# changes on every deploy, FTP-Deploy-Action always uploads it, which touches
+# the file on the server and triggers a Passenger reload.
+#
+# ── One-time setup (do this before the first deploy) ─────────────────────────
+# 1. cPanel → Node.js App → Create Application
+#      Node.js version          : 20.x
+#      Application mode         : Production
+#      Application root         : /home/<user>/apps/law-firm  ← matches FTP_SERVER_DIR
+#      Application URL          : yourdomain.com
+#      Application startup file : server.js
+# 2. Add every variable below under "Environment Variables" in the same UI.
+#
+# ── Required GitHub Secrets  (Settings → Secrets and variables → Actions) ────
+# ┌──────────────────────────────────┬───────────────────────────────────────┐
+# │ FTP_SERVER                       │ FTP hostname (e.g. ftp.yourdomain.com)│
+# │ FTP_USER                         │ FTP username (cPanel username)        │
+# │ FTP_PASSWORD                     │ FTP account password                  │
+# │ FTP_SERVER_DIR                   │ Remote path (e.g. /apps/law-firm/)    │
+# ├──────────────────────────────────┼───────────────────────────────────────┤
+# │ SMTP_HOST                        │ SMTP server hostname                  │
+# │ SMTP_PORT                        │ SMTP port (587 / 465)                 │
+# │ SMTP_USER                        │ SMTP login email                      │
+# │ SMTP_PASS                        │ SMTP password / app password          │
+# │ SMTP_FROM                        │ Sender name + address                 │
+# │ NOTIFY_EMAIL                     │ Inbox that receives form submissions  │
+# ├──────────────────────────────────┼───────────────────────────────────────┤
+# │ NEXT_PUBLIC_SANITY_PROJECT_ID    │ Sanity project ID                     │
+# │ NEXT_PUBLIC_SANITY_DATASET       │ Sanity dataset (e.g. production)      │
+# │ NEXT_PUBLIC_SANITY_API_VERSION   │ Sanity API version (e.g. 2024-01-01)  │
+# │ NEXT_PUBLIC_SANITY_API_TOKEN     │ Sanity write/mutate token             │
+# │ NEXT_PUBLIC_SANITY_READ_TOKEN    │ Sanity read token                     │
+# │ NEXT_PUBLIC_BASE_URL             │ Production URL (https://yourdomain.com│
+# └──────────────────────────────────┴───────────────────────────────────────┘
+# ─────────────────────────────────────────────────────────────────────────────
+
+name: Deploy to Shared Hosting
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Source code ───────────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── 2. Node.js ───────────────────────────────────────────────────────────
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      # ── 3. Dependencies ──────────────────────────────────────────────────────
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      # ── 4. Build ─────────────────────────────────────────────────────────────
+      - name: Build Next.js app
+        run: npm run build
+        env:
+          # SMTP_HOST:                        ${{ secrets.SMTP_HOST }}
+          # SMTP_PORT:                        ${{ secrets.SMTP_PORT }}
+          # SMTP_USER:                        ${{ secrets.SMTP_USER }}
+          # SMTP_PASS:                        ${{ secrets.SMTP_PASS }}
+          # SMTP_FROM:                        ${{ secrets.SMTP_FROM }}
+          # NOTIFY_EMAIL:                     ${{ secrets.NOTIFY_EMAIL }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID:    ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET:       ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+          NEXT_PUBLIC_SANITY_API_VERSION:   ${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
+          NEXT_PUBLIC_SANITY_API_TOKEN:     ${{ secrets.NEXT_PUBLIC_SANITY_API_TOKEN }}
+          NEXT_PUBLIC_SANITY_READ_TOKEN:    ${{ secrets.NEXT_PUBLIC_SANITY_READ_TOKEN }}
+          NEXT_PUBLIC_BASE_URL:             ${{ secrets.NEXT_PUBLIC_BASE_URL }}
+
+      # ── 5. Bundle standalone output ──────────────────────────────────────────
+      # Copies public assets and static files into the standalone build, then
+      # writes a timestamped restart.txt so Passenger reloads without SSH.
+      - name: Bundle standalone output
+        run: |
+          cp -r public       .next/standalone/public
+          cp -r .next/static .next/standalone/.next/static
+          mkdir -p .next/standalone/tmp
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > .next/standalone/tmp/restart.txt
+
+      # ── 6. Upload via FTP ────────────────────────────────────────────────────
+      # FTP-Deploy-Action tracks a state file so only changed files are uploaded
+      # on subsequent runs — much faster than a full sync every time.
+      - name: Deploy files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server:      ${{ secrets.FTP_SERVER }}
+          username:    ${{ secrets.FTP_USER }}
+          password:    ${{ secrets.FTP_PASSWORD }}
+          local-dir:   .next/standalone/
+          server-dir:  ${{ secrets.FTP_SERVER_DIR }}
+          protocol:    ftp
+          port:        21
+          timeout:     600000
+          exclude: |
+            **/.git*
+            **/.git*/**
