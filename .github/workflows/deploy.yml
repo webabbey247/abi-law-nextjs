@@ -114,7 +114,7 @@ jobs:
           password:    ${{ secrets.FTP_PASSWORD }}
           local-dir:   .next/standalone/
           server-dir:  ${{ secrets.FTP_SERVER_DIR }}
-          protocol:    ftp
+          protocol:    ftps
           port:        21
           timeout:     600000
           exclude: |
