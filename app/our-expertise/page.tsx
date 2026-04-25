@@ -89,7 +89,7 @@ export default async function OurExpertisePage({
                         )}
 
                         <Link
-                          href="/our-expertise"
+                          href={`/our-expertise/${item.slug}`}
                           className="font-body text-sm font-semibold text-primary hover:text-secondary transition-colors duration-200 inline-flex items-center gap-1 mt-4"
                         >
                           Read More{" "}
