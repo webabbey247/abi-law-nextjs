@@ -115,7 +115,7 @@ jobs:
           local-dir:   .next/standalone/
           server-dir:  ${{ secrets.FTP_SERVER_DIR }}
           protocol:    ftps
-          port:        21
+          port:        21098
           timeout:     600000
           exclude: |
             **/.git*
