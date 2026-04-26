@@ -103,13 +103,20 @@ jobs:
           mkdir -p .next/standalone/tmp
           date -u +"%Y-%m-%dT%H:%M:%SZ" > .next/standalone/tmp/restart.txt
 
-      # ── 6. Upload via SSH ────────────────────────────────────────────────────
-      - name: Deploy files via SSH
-        uses: appleboy/scp-action@v0.1.7
+      # ── 6. Upload via FTP ────────────────────────────────────────────────────
+      # FTP-Deploy-Action tracks a state file so only changed files are uploaded
+      # on subsequent runs — much faster than a full sync every time.
+      - name: Deploy files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          host:     ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port:     22
-          source:   ".next/standalone/."
-          target:   ${{ secrets.FTP_SERVER_DIR }}
+          server:      ${{ secrets.FTP_SERVER }}
+          username:    ${{ secrets.FTP_USER }}
+          password:    ${{ secrets.FTP_PASSWORD }}
+          local-dir:   .next/standalone/
+          server-dir:  ${{ secrets.FTP_SERVER_DIR }}
+          protocol:    ftp
+          port:        21
+          timeout:     600000
+          exclude: |
+            **/.git*
+            **/.git*/**
