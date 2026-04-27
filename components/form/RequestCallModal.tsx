@@ -103,13 +103,13 @@ export default function RequestCallModal({ variant = "primary", className = "" }
         >
           <div className="bg-white w-full max-w-lg rounded-sm shadow-2xl overflow-hidden">
             {/* Header */}
-            <div className="bg-[#071639] px-8 py-7 flex items-start justify-between gap-6">
+            <div className="bg-primary px-8 py-7 flex items-start justify-between gap-6">
               <div className="flex flex-col gap-1.5">
                 <p className="font-body text-[0.7rem] tracking-widest uppercase text-secondary/70">
                   Schedule a Call
                 </p>
                 <h2 className="font-display text-[1.6rem] font-semibold text-white leading-tight">
-                  Request a <em className="italic text-[#0474C4]">Free Consultation</em>
+                  Request a <em className="italic text-[#8ed4b8]">Free Consultation</em>
                 </h2>
                 <p className="font-body text-[0.82rem] leading-[1.65] text-white/55 max-w-xs">
                   Fill in your details and one of our attorneys will call you at your preferred time — no obligation.
@@ -118,7 +118,7 @@ export default function RequestCallModal({ variant = "primary", className = "" }
               <button
                 type="button"
                 onClick={close}
-                className="w-8 h-8 flex items-center justify-center text-white/50 hover:text-white transition-colors duration-200 bg-transparent border-0 cursor-pointer"
+                className="w-8 h-8 flex items-center justify-center text-white/50 rounded-full bg-text-primary/55 hover:text-white transition-colors duration-200 bg-transparent border-0 cursor-pointer"
                 aria-label="Close"
               >
                 <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current stroke-2" strokeLinecap="round">
@@ -182,7 +182,7 @@ export default function RequestCallModal({ variant = "primary", className = "" }
                     <input
                       {...register("mobile")}
                       type="tel"
-                      placeholder="+1 (212) 555-0100"
+                      placeholder=""
                       className={`font-body text-sm px-4 py-3 border rounded-sm outline-none transition-colors duration-200 focus:border-[#0474C4] ${errors.mobile ? "border-red-400" : "border-border"}`}
                     />
                     {errors.mobile && (

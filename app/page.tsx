@@ -386,7 +386,7 @@ export default async function HomePage() {
 
                    {/* Body — DM Sans, 16px, -0.005em, lh 1.7 */}
               <p className="font-body text-[1rem] tracking-[-0.005em] leading-[1.7] font-normal text-white/70 mt-4">
-                We value our team of legal professionals—a group
+                ABI Law Associates, we value our team of legal professionals—a group
                 that is both diverse and deeply dedicated.
               </p>
 

@@ -129,7 +129,7 @@ export default async function AboutPage() {
               >
                 <div className="flex items-start justify-between mb-2">
                   {/* H2 — Playfair Display, 36px, -0.015em, lh 1.2 */}
-                  <h2 className="font-heading line-clamp-2 text-[2.25rem] tracking-[-0.015em] leading-[1.2] font-bold text-stone-900">
+                  <h2 className="font-heading line-clamp-2 text-[2.25rem] tracking-[-0.015em] leading-[1.2] font-bold text-primary">
                     {step.title}
                   </h2>
 
@@ -140,7 +140,7 @@ export default async function AboutPage() {
                 </div>
 
                 {/* Body — DM Sans, 16px, -0.005em, lh 1.7 */}
-                <p className="font-body line-clamp-3 text-[1rem] tracking-[-0.005em] leading-[1.7] font-normal text-stone-600 mb-6 max-w-md">
+                <p className="font-body line-clamp-3 text-[1rem] tracking-[-0.005em] leading-[1.7] font-normal text-text-light mb-6 max-w-md">
                   {step.description}
                 </p>
 
@@ -244,7 +244,7 @@ export default async function AboutPage() {
 
                     {/* Body — DM Sans, 16px, -0.005em, lh 1.7 */}
               <p className="font-body text-[1rem] tracking-[-0.005em] leading-[1.7] font-normal text-white/70 mt-4">
-                At A1 Lawyers, we value our team of legal professionals—a group
+                ABI Law Associates, we value our team of legal professionals—a group
                 that is both diverse and deeply dedicated.
               </p>
               </div>
