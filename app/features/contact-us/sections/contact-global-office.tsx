@@ -31,10 +31,10 @@ const ContactGlobalOffice = ({offices} : {offices: Office[]}) => {
                       key={office._id}
                       className="border bg-white/90 border-[#0474C4]/25 rounded-sm p-6 flex flex-col gap-1"
                     >
-      <div className="font-body text-[0.75rem] tracking-[0.07em] uppercase font-medium text-[#637AA3] mb-2">
+      <div className="font-body text-[0.75rem] tracking-[0.07em] uppercase font-medium text-[#8ed4b8] mb-2">
                         {office.continent} · {office.category === "headquarters" ? "Headquarters" : "Regional"}
                       </div>
-      <div className="font-display text-[1.375rem] tracking-[-0.005em] leading-[1.3] font-medium text-[#0474C4] mb-3">
+      <div className="font-display text-[1.375rem] tracking-[-0.005em] leading-[1.3] font-medium text-primary mb-3">
                         {office.city}, {office.country}
                       </div>
       <div className="font-body text-[0.875rem] tracking-[0em] leading-[1.6] font-normal text-black whitespace-pre-line mb-2">

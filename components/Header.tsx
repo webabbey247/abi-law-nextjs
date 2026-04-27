@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import RequestCallModal from "@/components/form/RequestCallModal";
+import Image from "next/image";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -32,10 +33,8 @@ export default function Header() {
     >
       <div className="w-full lg:max-w-7xl mx-auto flex items-center justify-between h-18 px-6 md:px-0 lg:px-0">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <span className="font-display text-[1.4rem] font-bold text-white tracking-[-0.01em]">
-            {/* <span className="text-secondary">⚖</span> Lawyers */}
-          </span>
+         <Link href="/" className="flex items-center gap-2 max-w-36 transition-opacity duration-200">
+          <Image src="/images/logo-alt.png" alt="Logo" width={200} height={47} className="w-50 h-auto" />
         </Link>
 
         {/* Desktop Nav */}
