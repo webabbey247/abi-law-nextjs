@@ -230,7 +230,7 @@ export default async function AboutPage() {
               </div>
             ))}
 
-            <div className="w-full flex flex-col justify-start items-start bg-primary p-8 text-white rounded gap-2 max-w-100">
+            <div className="w-full flex flex-col justify-between items-start bg-primary p-8 text-white rounded gap-2 max-w-100">
               <div className="flex flex-col gap-2">
                 {/* Label — DM Sans, 12px, +0.07em, font-medium, uppercase */}
                 <p className="font-body text-[0.75rem] tracking-[0.07em] uppercase font-medium text-[#8ed4b8] mb-4 block">
@@ -241,13 +241,15 @@ export default async function AboutPage() {
                 <h4 className="font-heading text-[1.375rem] tracking-[-0.005em] leading-[1.3] font-medium text-white">
                   Qualified Personnel
                 </h4>
-              </div>
 
-              {/* Body — DM Sans, 16px, -0.005em, lh 1.7 */}
+                    {/* Body — DM Sans, 16px, -0.005em, lh 1.7 */}
               <p className="font-body text-[1rem] tracking-[-0.005em] leading-[1.7] font-normal text-white/70 mt-4">
                 At A1 Lawyers, we value our team of legal professionals—a group
                 that is both diverse and deeply dedicated.
               </p>
+              </div>
+
+          
 
               <Link href="/our-people" className="bg-secondary w-full py-3.5 px-8 text-base font-medium font-body rounded inline-flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors duration-200 mt-8">
                 Meet the Team  <ChevronRight className="inline w-3" />
