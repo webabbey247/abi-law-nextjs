@@ -17,14 +17,14 @@ export default function CareerPage() {
           <span className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-[#0474C4]/30" />
           <span className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-[#0474C4]/30" />
 
-          <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#EBF3FC] mb-6">
+          <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#057e5b]/10 mb-6">
             <BriefcaseBusiness
-              className="w-7 h-7 text-[#0474C4]"
+              className="w-7 h-7 text-[#8ed4b8]"
               strokeWidth={1.5}
             />
           </div>
 
-          <span className="font-body text-[0.72rem] tracking-[0.12em] uppercase font-semibold text-[#0474C4] mb-3">
+          <span className="font-body text-[0.72rem] tracking-[0.12em] uppercase font-semibold text-[#057e5b] mb-3">
             Positions Closed
           </span>
 

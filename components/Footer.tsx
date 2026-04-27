@@ -23,7 +23,7 @@ export default async function Footer() {
           <div className="flex flex-col justify-start gap-4">
             {/* Body — DM Sans, 15px, 0em, lh 1.7 */}
             <p className="font-body text-[0.9375rem] tracking-[0em] leading-[1.7] font-normal">
-              At Abi Law, we focus on building lasting relationships
+              At ABI Law Associates, we focus on building lasting relationships
               and go the extra mile to secure the best outcomes for our clients.
               Our advice and costs are always transparent, and we give careful
               thought to the legal and financial implications you may encounter.
@@ -102,7 +102,7 @@ export default async function Footer() {
 
         <div className="flex flex-col w-full ">
           <p className="font-body text-[0.8375rem] tracking-[0em] leading-[1.7] font-normal text-white/80 mb-6">
-            Abi Law Associates is a recognized sole practice with registered name of ABI Law Limited, incorporated in England and Wales with company number
+            ABI Law Associates is a recognized sole practice with registered name of ABI Law Limited, incorporated in England and Wales with company number
             (08827355) and is authorised and regulated by the Solicitors
             Regulation Authority (number 8012829). Registered office: The Pavilion, 96 Kensington High Street, London, W8 4SG, England .
           </p>
@@ -112,7 +112,7 @@ export default async function Footer() {
         <div className="border-t border-white/8 py-4 flex justify-between items-center flex-wrap gap-4">
           {/* Small — DM Sans, 12px, 0em */}
           <p className="font-body text-[0.8375rem] tracking-[0em] leading-[1.7] font-normal text-white/80">
-            &copy; {new Date().getFullYear()} A1 laywers Limited. All rights
+            &copy; {new Date().getFullYear()} ABI Law Associates. All rights
             reserved.
           </p>
           {/* <div className="flex gap-6">

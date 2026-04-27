@@ -20,13 +20,13 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "A1 laywers Limited — Professional Law Firm in Los Angeles, CA",
-    template: "%s — A1 laywers Limited",
+    default: "ABI Law Associates — Professional Law Firm in Kensington & Greater London",
+    template: "%s — ABI Law Associates",
   },
   description:
     "Premium legal representation. We fight for your rights with decades of experience in corporate law, litigation, and more.",
   keywords: [
-    "A1 Lawyers Limited",
+    "ABI Law Associates",
     "professional law firm",
     "corporate law",
     "litigation",
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://a1lawyerslimited.co.uk",
-    siteName: "A1 Lawyers Limited",
+    url: "https://abilaw.co.uk",
+    siteName: "ABI Law Associates",
   },
 };
 

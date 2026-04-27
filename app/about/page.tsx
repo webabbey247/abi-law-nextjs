@@ -37,7 +37,7 @@ export default async function AboutPage() {
           {/* <!-- Right --> */}
           <div className="space-y-5 pt-8 md:pt-10">
             <p className="font-sans text-base text-[#262b40] leading-relaxed">
-              At A1 Lawyers, we believe in providing clear and transparent legal
+              At ABI Law Associates, we believe in providing clear and transparent legal
               services that you can trust. Our experienced attorneys are
               committed to offering personalized solutions, whether you're
               dealing with complex real estate matters, seeking defense in
