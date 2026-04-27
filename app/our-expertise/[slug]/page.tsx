@@ -2,8 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "@portabletext/react";
-import { getExpertiseBySlug, getRelatedExpertise, getAllExpertiseSlugs } from "@/sanity/lib/services/expertiseService";
+import {
+  getExpertiseBySlug,
+  getRelatedExpertise,
+  getAllExpertiseSlugs,
+} from "@/sanity/lib/services/expertiseService";
 import { urlFor } from "@/sanity/lib/image";
+import { ChevronRight } from "lucide-react";
 
 export async function generateStaticParams() {
   const slugs = await getAllExpertiseSlugs();
@@ -25,12 +30,15 @@ export default async function ExpertiseDetailPage({
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#071639] relative overflow-hidden px-8 md:px-16 py-20 w-full">
+      <section className="bg-primary relative overflow-hidden px-8 md:px-16 py-20 w-full">
         <div className="absolute inset-0 bg-grid-ink pointer-events-none" />
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-3">
           <p className="font-body text-[0.75rem] tracking-[0.07em] uppercase font-medium text-[#EBF3FC] inline-flex items-center gap-2">
             <span className="block w-8 h-px bg-[#EBF3FC]" />
-            <Link href="/our-expertise" className="hover:text-secondary transition-colors">
+            <Link
+              href="/our-expertise"
+              className="hover:text-secondary transition-colors"
+            >
               Our Expertise
             </Link>
             <span>/</span>
@@ -49,13 +57,14 @@ export default async function ExpertiseDetailPage({
 
       {/* Content: sticky image left, body right */}
       <section className="bg-white w-full flex flex-col lg:flex-row items-start">
-
         {/* Left – sticky cover image as background */}
         <div
           className="w-full lg:w-1/2 min-h-[60vh] lg:min-h-screen lg:sticky lg:top-0 shrink-0 bg-cover bg-center bg-no-repeat"
           style={
             expertise.coverImage
-              ? { backgroundImage: `url(${urlFor(expertise.coverImage).width(1200).url()})` }
+              ? {
+                  backgroundImage: `url(${urlFor(expertise.coverImage).width(1200).url()})`,
+                }
               : { backgroundColor: "#EBF3FC" }
           }
         />
@@ -63,19 +72,23 @@ export default async function ExpertiseDetailPage({
         {/* Right – scrollable body */}
         <div className="w-full lg:w-1/2 min-w-0 p-20">
           {expertise.body ? (
-            <div className="prose prose-lg max-w-none font-body text-text leading-loose
+            <div
+              className="flex flex-col gap-2 prose prose-lg max-w-none font-body text-text leading-loose
               prose-headings:font-display prose-headings:text-primary prose-headings:tracking-tight
               prose-p:text-text prose-p:leading-loose
               prose-a:text-[#0474C4] prose-a:no-underline hover:prose-a:underline
               prose-strong:text-primary
-              prose-ul:list-disc prose-ul:pl-5
-              prose-ol:list-decimal prose-ol:pl-5
-              prose-li:text-text prose-li:leading-relaxed
-              prose-blockquote:border-l-4 prose-blockquote:border-secondary prose-blockquote:pl-4 prose-blockquote:text-text-light prose-blockquote:italic">
+              prose-ul:list-disc prose-ul:pl-5 prose-ul:space-y-1 prose-ul:italic
+              prose-ol:list-decimal prose-ol:pl-5 prose-ol:space-y-1 prose-ol:italic
+              prose-li:text-text-light prose-li:leading-relaxed
+              prose-blockquote:border-l-4 prose-blockquote:border-secondary prose-blockquote:pl-4 prose-blockquote:text-text-light prose-blockquote:italic"
+            >
               <PortableText value={expertise.body} />
             </div>
           ) : (
-            <p className="font-body text-text-light text-base">No content available.</p>
+            <p className="font-body text-text-light text-base">
+              No content available.
+            </p>
           )}
         </div>
       </section>
@@ -85,8 +98,8 @@ export default async function ExpertiseDetailPage({
         <section className="bg-bg py-16 px-8 md:px-16 w-full">
           <div className="max-w-7xl mx-auto flex flex-col gap-8">
             <div className="flex flex-col gap-2">
-              <p className="font-body text-[0.75rem] tracking-[0.07em] uppercase font-medium text-[#0474C4] inline-flex items-center gap-2">
-                <span className="block w-8 h-px bg-[#0474C4]" />
+              <p className="font-body text-[0.75rem] tracking-[0.07em] uppercase font-medium text-[#057e5b] inline-flex items-center gap-2">
+                <span className="block w-8 h-px bg-[#057e5b]" />
                 Related
               </p>
               <h2 className="font-display text-3xl font-bold text-primary leading-tight">
@@ -104,14 +117,16 @@ export default async function ExpertiseDetailPage({
                   excerpt?: string;
                   coverImage?: object;
                 }) => (
-                  <Link
+                  <div
                     key={item._id}
-                    href={`/our-expertise/${item.slug}`}
                     className="border border-[#0474C4]/10 rounded-sm hover-lift block bg-white"
                   >
                     {item.coverImage ? (
                       <Image
-                        src={urlFor(item.coverImage).width(400).height(240).url()}
+                        src={urlFor(item.coverImage)
+                          .width(400)
+                          .height(240)
+                          .url()}
                         alt={item.title}
                         width={400}
                         height={240}
@@ -120,21 +135,30 @@ export default async function ExpertiseDetailPage({
                     ) : (
                       <div className="w-full h-36 bg-[#EBF3FC] rounded-t-sm" />
                     )}
-                    <div className="p-4 flex flex-col gap-2">
-                      <span className="inline-flex h-6 w-fit items-center justify-center rounded font-body text-[0.6875rem] tracking-[0.05em] font-medium bg-[#0474C4]/10 text-[#0474C4] px-2 py-1 capitalize">
-                        {item.category}
+                    <div className="flex flex-col gap-2 p-4 py-8 text-primary">
+                      <span className="inline-flex font-body w-fit text-[0.68rem] font-semibold tracking-[0.06em] uppercase text-primary bg-bg px-2.5 py-1 border border-border">
+                        {item.category ?? "General"}
                       </span>
-                      <h4 className="font-display font-semibold text-lg text-primary line-clamp-2 leading-snug">
+
+                      <h4 className="font-display font-semibold text-xl line-clamp-1">
                         {item.title}
                       </h4>
                       {item.excerpt && (
-                        <p className="font-body text-sm text-text-light line-clamp-2 leading-relaxed">
+                        <p className="font-body font-normal text-[15px] text-text-light line-clamp-3">
                           {item.excerpt}
                         </p>
                       )}
+
+                      <Link
+                        href={`/our-expertise/${item.slug}`}
+                        className="font-body text-sm font-semibold text-primary hover:text-secondary transition-colors duration-200 inline-flex items-center gap-1 mt-4"
+                      >
+                        Read More{" "}
+                        <ChevronRight className="inline-block" size={16} />
+                      </Link>
                     </div>
-                  </Link>
-                )
+                  </div>
+                ),
               )}
             </div>
           </div>
@@ -149,7 +173,8 @@ export default async function ExpertiseDetailPage({
               Need Legal Counsel?
             </h4>
             <p className="font-body text-white text-lg">
-              Our attorneys are ready to assist with {expertise.title.toLowerCase()} matters.
+              Our attorneys are ready to assist with{" "}
+              {expertise.title.toLowerCase()} matters.
             </p>
           </div>
           <div className="w-full lg:w-1/3 flex justify-start lg:justify-end">
