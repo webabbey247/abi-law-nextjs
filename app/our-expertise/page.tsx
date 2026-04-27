@@ -83,7 +83,7 @@ export default async function OurExpertisePage({
                           {item.title}
                         </h4>
                         {item.excerpt && (
-                          <p className="font-body font-normal text-[15px] text-primary line-clamp-3">
+                          <p className="font-body font-normal text-[15px] text-text-light line-clamp-3">
                             {item.excerpt}
                           </p>
                         )}

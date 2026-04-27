@@ -84,7 +84,7 @@ export default async function HomePage() {
           <div className="space-y-5 pt-8 md:pt-10">
 
             {/* Body — DM Sans, 16px, -0.005em, lh 1.7 */}
-            <p className="font-body text-[1rem] tracking-[-0.005em] leading-[1.7] font-normal text-stone-700">
+            <p className="font-body text-[1rem] tracking-[-0.005em] leading-[1.7] font-normal text-text-light">
               At ABI Law Associates, we believe in providing clear and transparent legal
               services that you can trust. Our experienced attorneys are
               committed to offering personalized solutions, whether you're
@@ -94,7 +94,7 @@ export default async function HomePage() {
               navigate.
             </p>
 
-            <p className="font-body text-[1rem] tracking-[-0.005em] leading-[1.7] font-normal text-stone-700">
+            <p className="font-body text-[1rem] tracking-[-0.005em] leading-[1.7] font-normal text-text-light">
               Our team ensures that every client receives the most effective
               legal strategies, all while building long-term relationships
               focused on achieving the best possible outcomes.
@@ -200,14 +200,14 @@ export default async function HomePage() {
                 }}
               >
                 <div className="flex flex-col lg:flex-row items-start justify-start lg:justify-between">
-                  <h2 className="font-heading order-2 lg:order-1 line-clamp-2 text-[2.25rem] tracking-[-0.015em] leading-[1.2] font-bold text-stone-900">
+                  <h2 className="font-heading order-2 lg:order-1 line-clamp-2 text-[2.25rem] tracking-[-0.015em] leading-[1.2] font-bold text-primary">
                     {step.title}
                   </h2>
                   <span className="font-heading order-1 lg:order-2 text-[6rem] tracking-[-0.02em] leading-none font-bold text-stone-200/30 select-none">
                     {String(step.order).padStart(2, "0")}
                   </span>
                 </div>
-                <p className="font-body line-clamp-3 text-[1rem] tracking-[-0.005em] leading-[1.7] font-normal text-stone-600 mb-6 max-w-lg">
+                <p className="font-body line-clamp-3 text-[1rem] tracking-[-0.005em] leading-[1.7] font-normal text-text-light mb-6 max-w-lg">
                   {step.description}
                 </p>
                 <div className="relative h-72 rounded-2xl overflow-hidden">
@@ -238,7 +238,7 @@ export default async function HomePage() {
               <h2 className="font-display text-[1.75rem] tracking-[-0.015em] leading-[1.2] font-semibold mb-5 text-[#071639] w-full lg:max-w-150">
                 Expertise For Individuals &amp; Businesses
               </h2>
-              <p className="font-body text-[1rem] tracking-[-0.005em] leading-[1.7] font-normal text-slate-600 w-full lg:max-w-160">
+              <p className="font-body text-[1rem] tracking-[-0.005em] leading-[1.7] font-normal text-text-light w-full lg:max-w-160">
                 With a proud tradition spanning decades, our firm has delivered
                 steadfast representation and proven.
               </p>
@@ -288,7 +288,7 @@ export default async function HomePage() {
                       {item.title}
                     </h4>
                     {item.excerpt && (
-                      <p className="font-body font-normal text-[15px] text-primary line-clamp-3">
+                      <p className="font-body font-normal text-[15px] text-text-light line-clamp-3">
                         {item.excerpt}
                       </p>
                     )}
